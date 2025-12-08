@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: userManagementApp
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_management?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+  cache:
+    type: simple
+
+jwt:
+  secret: IQsgJfxo6WbAk9Q6z1CPq8mLK3pk81nM4GfXhC6LGYY=
+  expiration: 86400000 # 24 hours
+
+logging:
+  level:
+    com.example: DEBUG
+    org.springframework.security: DEBUG

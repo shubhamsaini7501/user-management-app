@@ -1,0 +1,16 @@
+# application-docker.yml (for Docker with KRaft - overrides local config)
+spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/user_management?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    bootstrap-servers: kafka:9092  # Points to Kafka container in Docker network (KRaft compatible)
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
