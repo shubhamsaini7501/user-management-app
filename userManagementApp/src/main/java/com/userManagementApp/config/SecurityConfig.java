@@ -57,7 +57,7 @@ public class SecurityConfig {
                 )
 
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                // Custom handlers for better error responses (optional but recommended)
+                // Custom handlers for better error responses 
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((req, res, authEx) -> {
                             res.setStatus(HttpStatus.UNAUTHORIZED.value());
